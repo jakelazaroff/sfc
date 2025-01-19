@@ -1,0 +1,19 @@
+{
+  "name": "sfc",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "estree-walker": "^3.0.3",
+    "svelte": "^5.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7"
+  }
+}
