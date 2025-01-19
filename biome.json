@@ -15,7 +15,9 @@
     "rules": {
       "style": {
         "useSingleVarDeclarator": "off",
-        "noNonNullAssertion": "warn"
+        "noNonNullAssertion": "warn",
+        "noUnusedTemplateLiteral": "off",
+        "useTemplate": "off"
       }
     }
   }
