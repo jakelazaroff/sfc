@@ -10,11 +10,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "estree-walker": "^3.0.3",
-    "svelte": "^5.19.0"
+    "@astrojs/compiler": "^2.10.3",
+    "lightningcss": "^1.29.1",
+    "oxc-parser": "^0.47.1"
   },
   "devDependencies": {
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.10",
     "vitest": "^3.0.2"
   }
 }

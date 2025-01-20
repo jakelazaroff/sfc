@@ -1,31 +1,24 @@
 import path from "node:path";
 
-import { compile } from "./compile.js";
+import { compile } from "./compile";
 
-export default function sfc(options = {}) {
+interface Options {
+  extension?: string;
+}
+
+export default function sfc(options: Options = {}) {
   const { extension = ".sfc" } = options;
 
-  // keep track of CSS contents for virtual modules
-  /** @type {Map<string, string>} */
-  const css = new Map();
-
-  // keep track of JSX contents for virtual modules
-  /** @type {Map<string, string>} */
-  const jsx = new Map();
+  const jsx = new Map<string, string>();
+  const css = new Map<string, string>();
 
   const prefix = "virtual:sfc";
 
   return {
     name: "vite-plugin-sfc",
-
-    /** @type {"pre"} */
     enforce: "pre",
 
-    /**
-     * @param {string} id
-     * @param {string?} [importer]
-     */
-    resolveId(id, importer = "") {
+    resolveId(id: string, importer = "") {
       if (id.startsWith(prefix)) return id;
 
       // handle relative imports within the virtual file
@@ -37,10 +30,7 @@ export default function sfc(options = {}) {
       return null;
     },
 
-    /**
-     * @param {string} id
-     */
-    load(id) {
+    load(id: string) {
       if (!id.startsWith(prefix)) return null;
 
       // handle virtual CSS modules
@@ -54,17 +44,13 @@ export default function sfc(options = {}) {
       }
     },
 
-    /**
-     * @param {string} source
-     * @param {string} id
-     */
-    transform(source, id) {
+    async transform(source: string, id: string) {
       // only transform files with the specified extension
       if (!id.endsWith(extension)) return null;
 
       try {
         // parse the content
-        const output = compile(source);
+        const output = await compile(source);
 
         let code = "";
 
@@ -81,7 +67,7 @@ export default function sfc(options = {}) {
 
         return { code, map: null };
       } catch (error) {
-        this.error(`Error processing ${id}: ${error}`);
+        console.error(`Error processing ${id}: ${error}`);
         return null;
       }
     },

@@ -1,5 +1,12 @@
-/** @type {string} str */
-export function dedent(str) {
+export function indent(str: string, spaces = 0) {
+  return str
+    .split("\n")
+    .filter(line => !!line.trim())
+    .map(line => " ".repeat(spaces) + line)
+    .join("\n");
+}
+
+export function dedent(str: string) {
   const lines = str.split("\n");
 
   let ws = Infinity;
