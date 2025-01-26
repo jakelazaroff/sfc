@@ -4,10 +4,11 @@ import { compile } from "./compile";
 
 interface Options {
   extension?: string;
+  scope?: boolean;
 }
 
 export default function sfc(options: Options = {}) {
-  const { extension = ".sfc" } = options;
+  const { extension = ".sfc", scope = true } = options;
 
   const jsx = new Map<string, string>();
   const css = new Map<string, string>();
@@ -16,7 +17,7 @@ export default function sfc(options: Options = {}) {
 
   return {
     name: "vite-plugin-sfc",
-    enforce: "pre",
+    enforce: "pre" as const,
 
     resolveId(id: string, importer = "") {
       if (id.startsWith(prefix)) return id;
@@ -50,7 +51,7 @@ export default function sfc(options: Options = {}) {
 
       try {
         // parse the content
-        const output = await compile(source);
+        const output = await compile(source, { scope: true });
 
         let code = "";
 
