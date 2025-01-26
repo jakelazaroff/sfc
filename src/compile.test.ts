@@ -6,10 +6,8 @@ import { dedent } from "./util";
 describe("compile", () => {
   test("only markup", async () => {
     const source = dedent(`
-      <div>
-        <h1>greetings!</h1>
-        <p>hello, world!</p>
-      </div>
+      <h1>greetings!</h1>
+      <p>hello, world!</p>
     `);
 
     const output =
@@ -17,10 +15,29 @@ describe("compile", () => {
       export default function(props) {
         return (
           <>
-            <div>
-              <h1>greetings!</h1>
-              <p>hello, world!</p>
-            </div>
+            <h1>greetings!</h1>
+            <p>hello, world!</p>
+          </>
+        );
+      }
+    `).trim() + "\n";
+
+    expect((await compile(source)).js).toBe(output);
+  });
+
+  test("components", async () => {
+    const source = dedent(`
+      <Heading>greetings!</Heading>
+      <p>hello, world!</p>
+    `);
+
+    const output =
+      dedent(`
+      export default function(props) {
+        return (
+          <>
+            <Heading>greetings!</Heading>
+            <p>hello, world!</p>
           </>
         );
       }

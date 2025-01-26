@@ -35,7 +35,7 @@ export async function compile(source: string, options: Options = {}) {
   };
 
   for (const el of html.ast.children) {
-    if (!is.element(el)) continue;
+    if (!is.element(el) && !is.component(el)) continue;
     if (el.name === "script") continue;
     if (el.name === "style") continue;
 
