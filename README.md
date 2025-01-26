@@ -29,7 +29,7 @@ SFC compiles single-file components into plain JSX and CSS:
 ```jsx
 import { createSignal } from "solid-js";
 
-export default function(props) {
+export default function (props) {
   const [count, setCount] = createSignal(0);
 
   return (
@@ -53,3 +53,11 @@ Short story: Svelte and Astro are awesome, and I missed the DX when using other 
 - **No toolchain changes.** SFC can be used as a Vite plugin in your existing build system.
 - **No runtime cost.** SFC components are compiled at build time into native components for your framework.
 - **No lock-in.** If you decide you don't like SFC, run it on your source files to get the code you would have written anyway.
+
+## Todo
+
+- [ ] auto reloading with Vite
+- [ ] props and prop type definitions
+- [ ] generics
+- [ ] subcomponents
+- [ ] source maps
