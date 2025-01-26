@@ -6,7 +6,6 @@ import { dedent } from "./util";
 describe("compile", () => {
   test("only markup", async () => {
     const source = dedent(`
-      <h1>greetings!</h1>
       <p>hello, world!</p>
     `);
 
@@ -14,10 +13,7 @@ describe("compile", () => {
       dedent(`
       export default function(props) {
         return (
-          <>
-            <h1>greetings!</h1>
-            <p>hello, world!</p>
-          </>
+          <p>hello, world!</p>
         );
       }
     `).trim() + "\n";
@@ -60,9 +56,7 @@ describe("compile", () => {
         let name = "jake";
 
         return (
-          <>
-            <p>hello, {name}!</p>
-          </>
+          <p>hello, {name}!</p>
         );
       }`).trim() + "\n";
 
@@ -88,9 +82,7 @@ describe("compile", () => {
         let name = "jake";
 
         return (
-          <>
-            <p>hello, {name}!</p>
-          </>
+          <p>hello, {name}!</p>
         );
       }`).trim() + "\n";
 
@@ -114,9 +106,7 @@ describe("compile", () => {
 
       export default function(props) {
         return (
-          <>
-            <p>hello, {name}!</p>
-          </>
+          <p>hello, {name}!</p>
         );
       }`).trim() + "\n";
 
@@ -154,9 +144,7 @@ describe("compile", () => {
       dedent(`
       export default function(props) {
         return (
-          <>
-            <p data-sfc-id-asdf class="foo">hello world!</p>
-          </>
+          <p data-sfc-id-asdf class="foo">hello world!</p>
         );
       }
     `).trim() + "\n";

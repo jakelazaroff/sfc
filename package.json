@@ -15,6 +15,7 @@
     "oxc-parser": "^0.47.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.10.10",
     "vitest": "^3.0.2"
   }

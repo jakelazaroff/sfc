@@ -111,13 +111,14 @@ export async function compile(source: string, options: Options = {}) {
   if (spans.body.length) js += "\n";
 
   js += "  return (\n";
-  js += "    <>\n";
+  if (spans.template.length > 1) js += "    <>\n";
 
   for (const { text } of spans.template) {
-    js += indent(text, 6) + "\n";
+    const indentation = spans.template.length > 1 ? 6 : 4;
+    js += indent(text, indentation) + "\n";
   }
 
-  js += "    </>\n";
+  if (spans.template.length > 1) js += "    </>\n";
   js += "  );\n";
   js += "}\n";
 
